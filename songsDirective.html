@@ -1,0 +1,33 @@
+<table>
+    <tr ng-repeat="track in songsList.songs">
+        <td>
+            <span ng-hide="track.editMode" ng-bind="track.title"></span>
+            <input ng-model="track.title" ng-show="track.editMode" />
+        </td>
+        <td>
+            <span ng-hide="track.editMode" ng-bind="track.composer"></span>
+            <input ng-model="track.composer" ng-show="track.editMode" />
+        </td>
+        <td>
+            <select ng-model="track.genreList" ng-options="genre for genre in songsList.genreList"></select>
+        </td>
+        <td>
+            <button ng-click="track.editMode = !track.editMode">Edit</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button ng-click="songsList.startNewSong();">Add</button>
+            <form name='newSongForm' ng-if='songsList.newSong'>
+                <input required name="songTitle" ng-model="songsList.newSong.title" />
+                <button ng-click="songsList.finishNewSong();">
+                    Finish Song
+                </button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<ul>
+    <li ng-repeat="eachGenre in songsList.genreList">{{eachGenre}}</li>
+</ul>

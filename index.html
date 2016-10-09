@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Angular Training</title>
+        <meta charset="utf-8" />
+        <meta name="description" content="Angular training" />
+        <meta name="author" content="Sean Courtney" />
+        <script src="node_modules/angular/angular.js"></script>
+        <script>
+            angular.module('songsApp', []); // create the module
+            var songsApp = angular.module('songsApp'); //  reference to the module
+        </script>
+        <script src="songsController.js"></script>    
+        <script src="songsDirective.js"></script>
+        <script src="genreProvider.js"></script>
+        <script>
+            songsApp.directive('firstDir', function firstDirInit() {
+                return {
+                    templateUrl: 'firstDir.html',
+                    // template: 'hello, world!', // only good for one-line text, really
+                    restrict: 'AE' // A = attribute, E = element; if unspecified, defaults to A
+                };
+            });
+        </script>
+    </head>
+    <body ng-app="songsApp">
+        <h1>Angular Training</h1>
+        <first-dir></first-dir>
+        <div ng-controller="songsController as songsList">
+            <songs-directive></songs-directive>
+        </div>
+    </body>
+</html>
